@@ -26,7 +26,7 @@ async function start (){
         //for deploy
         app.use(express.static('client/build'));
         app.get('*', (req, res) => {
-            res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'));
+            res.sendFile(path.resolve(__dirname, 'frontend', 'public', 'index.html'));
         });
     }
     catch (e) {
