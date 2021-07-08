@@ -4,12 +4,12 @@
   "description": "",
   "main": "app.js",
   "scripts": {
-    "start": "cross-env NODE_ENV=production node backend/app.js",
+    "start": "node backend/app.js",
     "server": "nodemon backend/app.js",
     "client": "npm run --prefix frontend start",
     "client:install": "npm install --prefix frontend",
     "client:build": "npm run build --prefix frontend",
-    "dev": "cross-env NODE_ENV=development concurrently \"npm run server\" \"npm run client\"",
+    "dev": "concurrently \"npm run server\" \"npm run client\"",
     "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false && npm install --prefix frontend && npm run build --prefix frontend",
     "eslint": "eslint",
     "prettier": "prettier"
