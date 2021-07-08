@@ -15,9 +15,9 @@ const PORT = process.env.PORT || config.get('port') || 5000
 
 if (process.env.NODE_ENV === 'production'){
     //for deploy
-    app.use(express.static(path.join(__dirname,'/../frontend/public')))
+    app.use('/', express.static(path.join(__dirname,'/../frontend/build')))
     app.get('*', (req, res) => {
-        res.sendFile(path.resolve(__dirname, '/../frontend/public', 'index.html'));
+        res.sendFile(path.resolve(__dirname, '/../frontend/build', 'index.html'));
     });
 }
 
