@@ -108,7 +108,7 @@ export const Navbar = () => {
 
     const profileHandler = (event) => {
         event.preventDefault()
-        history.push("/profile")
+        history.push("/profile/asd")
         handleClose()
     }
 

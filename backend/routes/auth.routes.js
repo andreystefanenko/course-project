@@ -82,9 +82,9 @@ router.post(
                 config.get('jwtSecret'),
                 {expiresIn: '1h'}
             )
+            
 
-            //res.status(StatusCodes.OK).json({message: "Successfully login"})
-            res.status(StatusCodes.OK).json({ token, userID: user.id, message:"Successfully login",})
+            res.status(StatusCodes.OK).json({ token, userId: user.id, message:"Successfully login",})
 
 
         } catch (e) {

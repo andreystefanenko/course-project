@@ -8,8 +8,7 @@ module.exports = (req, res, next) => {
     }
 
     try {
-
-        const token = req.header.authorization.split(' ')[1]
+        const token = req.headers["authorization"].split(' ')[1]
 
         if (!token) {
             return res.status(StatusCodes.UNAUTHORIZED).json({message: 'No authorization'})
@@ -20,6 +19,6 @@ module.exports = (req, res, next) => {
         next()
 
     } catch (e) {
-        res.status(StatusCodes.UNAUTHORIZED).json({message: 'No authorization'})
+        res.status(StatusCodes.UNAUTHORIZED).json({message: 'No fck authorization'})
     }
 }

@@ -14,6 +14,7 @@ import * as yup from 'yup';
 import {useHttp} from "../hooks/http.hook";
 import {useSnackbar} from "notistack";
 import {AuthContext} from "../context/AuthContext";
+import {NavLink} from "react-router-dom";
 
 
 const useStyles = makeStyles((theme) => ({
@@ -60,7 +61,7 @@ export const AuthPage = () => {
             },
             validationSchema: authSchema,
             onSubmit: (values) => {
-                loginHandler().then()
+                loginHandler()
             },
         });
 
@@ -135,16 +136,9 @@ export const AuthPage = () => {
                         >
                             Sign In
                         </Button>
-                        <Grid container>
-                            <Grid item xs>
-                                <Link href="#" variant="body2">
-                                    Forgot password?
-                                </Link>
-                            </Grid>
+                        <Grid container justify="flex-end">
                             <Grid item>
-                                <Link href="http://localhost:3000/registration" variant="body2">
-                                    {"Don't have an account? Sign Up"}
-                                </Link>
+                                <NavLink to="/registration">Don't have account? Sign up</NavLink>
                             </Grid>
                         </Grid>
                     </form>

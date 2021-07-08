@@ -3,7 +3,6 @@ import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import TextField from '@material-ui/core/TextField';
-import Link from '@material-ui/core/Link';
 import Grid from '@material-ui/core/Grid';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
@@ -13,6 +12,7 @@ import { useFormik } from 'formik';
 import * as yup from 'yup';
 import {useHttp} from "../hooks/http.hook";
 import {useSnackbar} from "notistack";
+import {NavLink, useHistory} from "react-router-dom";
 
 
 const useStyles = makeStyles((theme) => ({
@@ -71,11 +71,12 @@ export const RegPage = () => {
         },
         validationSchema: regSchema,
         onSubmit: () => {
-            registerHandler().then()
+            registerHandler()
         },
     })
     const {loading,error,request, clearError} = useHttp()
     const { enqueueSnackbar } = useSnackbar()
+    const history = useHistory()
     //const [registrationSuccess, setRegistrationSuccess] = useState()
     useEffect( () => {
         if (error) {
@@ -92,6 +93,7 @@ export const RegPage = () => {
         } catch (e) {
 
         }
+        history.push("/authorization")
     }
 
     return (
@@ -178,9 +180,10 @@ export const RegPage = () => {
                     </Button>
                     <Grid container justify="flex-end">
                         <Grid item>
-                            <Link href="http://localhost:3000/authorization" variant="body2">
-                                Already have an account? Sign in
-                            </Link>
+                            <NavLink to="/authorization">Already have an account? Sign in</NavLink>
+                            {/*<Link href="http://localhost:3000/authorization" variant="body2">*/}
+                            {/*    Already have an account? Sign in*/}
+                            {/*</Link>*/}
                         </Grid>
                     </Grid>
                 </form>
