@@ -24,9 +24,9 @@ async function start (){
         })
         app.listen(PORT, () => console.log(`App has been started on port ${PORT}...`))
         //for deploy
-        app.use(express.static('client/build'));
+        app.use(express.static('frontend/public'));
         app.get('*', (req, res) => {
-            res.sendFile(path.resolve(__dirname, 'frontend', 'public', 'index.html'));
+            res.sendFile(path.resolve(__dirname, 'frontend', 'public'));
         });
     }
     catch (e) {
