@@ -10,7 +10,17 @@ router.get('/all', async(req,res) => {
         res.json(tags)
     }
     catch (e) {
-        console.log(e)
+        res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({message: 'Something went wrong! Try again!'})
+    }
+})
+
+router.post('/byIds', async(req,res) => {
+    try{
+        const {tagsIds} = req.body
+        const tags = await Tag.find({ _id: {$in: tagsIds}})
+        res.json(tags)
+    }
+    catch (e) {
         res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({message: 'Something went wrong! Try again!'})
     }
 })

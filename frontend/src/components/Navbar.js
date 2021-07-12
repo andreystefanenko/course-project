@@ -1,17 +1,20 @@
-import React, {useContext} from 'react';
-import {fade, makeStyles} from '@material-ui/core/styles';
-import AppBar from '@material-ui/core/AppBar';
-import Toolbar from '@material-ui/core/Toolbar';
-import Typography from '@material-ui/core/Typography';
-import IconButton from '@material-ui/core/IconButton';
-import AccountCircle from '@material-ui/icons/AccountCircle';
-import MenuItem from '@material-ui/core/MenuItem';
-import Menu from '@material-ui/core/Menu';
-import {AuthContext} from "../context/AuthContext";
+import React, {useContext, useState} from 'react'
+import {fade, makeStyles} from '@material-ui/core/styles'
+import AppBar from '@material-ui/core/AppBar'
+import Toolbar from '@material-ui/core/Toolbar'
+import Typography from '@material-ui/core/Typography'
+import IconButton from '@material-ui/core/IconButton'
+import AccountCircle from '@material-ui/icons/AccountCircle'
+import MenuItem from '@material-ui/core/MenuItem'
+import Menu from '@material-ui/core/Menu'
+import {AuthContext} from "../context/AuthContext"
 import {NavLink, useHistory} from "react-router-dom"
-import SearchIcon from '@material-ui/icons/Search';
-import {InputBase, Link, Select} from "@material-ui/core";
-import Button from "@material-ui/core/Button";
+import SearchIcon from '@material-ui/icons/Search'
+import {InputBase, Select} from "@material-ui/core"
+import Button from "@material-ui/core/Button"
+import locales from "../localization/locale"
+import {FormattedMessage} from "react-intl"
+
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -79,25 +82,21 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-export const Navbar = () => {
+export const Navbar = ({value, onChange}) => {
     const classes = useStyles();
-   // const [auth, setAuth] = React.useState(true);
-    const [anchorEl, setAnchorEl] = React.useState(null);
-    const open = Boolean(anchorEl);
+    const [anchorEl, setAnchorEl] = useState(null);
+    const open = Boolean(anchorEl)
     const auth = useContext(AuthContext)
     const history = useHistory()
 
-    // const handleChange = (event) => {
-    //     setAuth(event.target.checked);
-    // };
 
     const handleMenu = (event) => {
         setAnchorEl(event.currentTarget);
-    };
+    }
 
     const handleClose = () => {
         setAnchorEl(null);
-    };
+    }
 
     const logoutHandler = (event) => {
         event.preventDefault()
@@ -120,7 +119,8 @@ export const Navbar = () => {
 
     const fanficsHandler = (event) => {
         event.preventDefault()
-        history.push("/create")
+        history.push("/fanfics")
+        handleClose()
     }
 
     return (
@@ -151,30 +151,35 @@ export const Navbar = () => {
                     </div>
                     <div>
                         <Select className={classes.select}
-                            value=''
-                            //onChange={handleChange}
-                            displayEmpty
-                            //className={classes.selectEmpty}
+                            value={value}
+                            onChange={(e) => onChange(e.target.value)}
                                 inputProps={{
                                     classes: {
                                         icon: classes.icon,
                                     },
                                 }}
                         >
-                            <MenuItem value=''>English</MenuItem>
-                            <MenuItem value={10}>Russian</MenuItem>
+                            <MenuItem value={locales.EN}>
+                                <FormattedMessage id="navbar.select.language.en" />
+                            </MenuItem>
+                            <MenuItem value={locales.RU}>
+                                <FormattedMessage id="navbar.select.language.ru" />
+                            </MenuItem>
                         </Select>
                     </div>
                     {!auth.isAuthenticated && (
                     <div>
-                        <Button color='white'>
+                        <Button>
                             <NavLink to="/authorization"
                                      style={{color: 'white', textDecoration: 'none'}}
                                      activeStyle={{
                                 fontWeight: "normal",
                                 color: "white",
                                 textDecoration: "none"
-                            }}>Sign in</NavLink>
+                            }}
+                            >
+                                <FormattedMessage id="navbar.signin" />
+                            </NavLink>
                         </Button>
                     </div>
                     )}
@@ -205,7 +210,7 @@ export const Navbar = () => {
                                 onClose={handleClose}
                             >
                                 <MenuItem onClick={profileHandler}>Profile</MenuItem>
-                                <MenuItem onClick={handleClose}>My fanfics</MenuItem>
+                                <MenuItem onClick={fanficsHandler}>My fanfics</MenuItem>
                                 <MenuItem onClick={createHandler}>Create new</MenuItem>
                                 <MenuItem onClick={logoutHandler}>Logout</MenuItem>
                             </Menu>

@@ -1,18 +1,19 @@
 import React, {useContext, useEffect, useState} from 'react'
-import {Container, Typography} from "@material-ui/core"
 import {makeStyles} from "@material-ui/core/styles"
-import CreateIcon from '@material-ui/icons/Create'
-import Avatar from "@material-ui/core/Avatar"
-import TextField from "@material-ui/core/TextField"
-import Button from "@material-ui/core/Button"
-import { useFormik } from 'formik'
-import * as yup from 'yup'
+import * as yup from "yup"
+import {AuthContext} from "../context/AuthContext"
 import {useHttp} from "../hooks/http.hook"
 import {useSnackbar} from "notistack"
-import {Autocomplete} from "@material-ui/lab"
-import {AuthContext} from "../context/AuthContext"
-import {Loader} from "../components/Loader"
 import {useHistory} from "react-router-dom"
+import {useFormik} from "formik"
+import {Loader} from "../components/Loader"
+import {Container, Typography} from "@material-ui/core"
+import Avatar from "@material-ui/core/Avatar"
+import BuildIcon from '@material-ui/icons/Build'
+import TextField from "@material-ui/core/TextField"
+import {Autocomplete} from "@material-ui/lab"
+import Button from "@material-ui/core/Button"
+
 
 const useStyles = makeStyles((theme) => ({
     paper: {
@@ -48,7 +49,8 @@ const fanficSchema = yup.object({
 
 });
 
-export const CreatePage = () => {
+
+export const EditFanficPage = () => {
 
     const classes = useStyles();
     const [fandom, setFandom] = useState([])
@@ -68,10 +70,10 @@ export const CreatePage = () => {
         },
         validationSchema: fanficSchema,
         onSubmit: () => {
-            fanficHandler().then(data => history.push(`/create/${data.fanfic}/chapter`))
+            alert("Still develop!")
+            //fanficHandler().then(data => history.push(`/create/${data.fanfic}/chapter`))
         },
     });
-
 
 
     const fanficHandler = async () => {
@@ -107,16 +109,14 @@ export const CreatePage = () => {
     if((loading) && fandom === undefined && tag === undefined) {
         return <Loader/>
     }
-
-
     return (
         <Container maxWidth="sm" >
             <div className={classes.paper}>
                 <Avatar className={classes.avatar}>
-                    <CreateIcon />
+                    <BuildIcon />
                 </Avatar>
                 <Typography component="h1" variant="h5">
-                    Creating a new fanfic
+                    Fanfic editing
                 </Typography>
                 <form className={classes.form} onSubmit={formik.handleSubmit}>
                     <TextField
@@ -209,9 +209,9 @@ export const CreatePage = () => {
                         variant="contained"
                         color="primary"
                         className={classes.submit}
-                        disabled={loading}
+                        //disabled={loading}
                     >
-                        Start writing a chapter
+                        Save changes
                     </Button>
                 </form>
             </div>

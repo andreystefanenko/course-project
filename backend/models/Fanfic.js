@@ -5,7 +5,7 @@ const schema = new Schema({
     fandom: {type: Types.ObjectId, ref: 'Fandom', required: true},
     tags: [{type: Types.ObjectId, ref: 'Tag', required: true}],
     describe: {type: String, required: true},
-    photo: {type: String},
+    chapters: [{type: Types.ObjectId, ref: 'Chapter'}],
     createDate: {type: Date, default: Date.now},
     author: {type: Types.ObjectId, ref: 'User'}
 })

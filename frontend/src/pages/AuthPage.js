@@ -1,20 +1,20 @@
-import React, {useContext, useEffect} from 'react';
-import Avatar from '@material-ui/core/Avatar';
-import Button from '@material-ui/core/Button';
-import CssBaseline from '@material-ui/core/CssBaseline';
-import TextField from '@material-ui/core/TextField';
-import Link from '@material-ui/core/Link';
-import Grid from '@material-ui/core/Grid';
-import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
-import Typography from '@material-ui/core/Typography';
-import { makeStyles } from '@material-ui/core/styles';
-import Container from '@material-ui/core/Container';
-import { useFormik } from 'formik';
-import * as yup from 'yup';
-import {useHttp} from "../hooks/http.hook";
-import {useSnackbar} from "notistack";
-import {AuthContext} from "../context/AuthContext";
-import {NavLink} from "react-router-dom";
+import React, {useContext, useEffect} from 'react'
+import Avatar from '@material-ui/core/Avatar'
+import Button from '@material-ui/core/Button'
+import CssBaseline from '@material-ui/core/CssBaseline'
+import TextField from '@material-ui/core/TextField'
+import Grid from '@material-ui/core/Grid'
+import LockOutlinedIcon from '@material-ui/icons/LockOutlined'
+import Typography from '@material-ui/core/Typography'
+import { makeStyles } from '@material-ui/core/styles'
+import Container from '@material-ui/core/Container'
+import { useFormik } from 'formik'
+import * as yup from 'yup'
+import {useHttp} from "../hooks/http.hook"
+import {useSnackbar} from "notistack"
+import {AuthContext} from "../context/AuthContext"
+import {NavLink} from "react-router-dom"
+import {FormattedMessage} from "react-intl"
 
 
 const useStyles = makeStyles((theme) => ({
@@ -94,15 +94,16 @@ export const AuthPage = () => {
                         <LockOutlinedIcon />
                     </Avatar>
                     <Typography component="h1" variant="h5">
-                        Sign in
+                        <FormattedMessage id="authpage.signin" />
                     </Typography>
                     <form className={classes.form} onSubmit={formik.handleSubmit}>
                         <TextField
                             variant="outlined"
                             margin="normal"
                             fullWidth
+                            required
                             id="email"
-                            label="Email Address"
+                            label=<FormattedMessage id="authpage.textfield.email" />
                             name="email"
                             autoComplete="email"
                             autoFocus
@@ -117,7 +118,7 @@ export const AuthPage = () => {
                             required
                             fullWidth
                             name="password"
-                            label="Password"
+                            label=<FormattedMessage id="authpage.textfield.password" />
                             type="password"
                             id="password"
                             autoComplete="current-password"
@@ -134,11 +135,11 @@ export const AuthPage = () => {
                             className={classes.submit}
                             disabled={loading}
                         >
-                            Sign In
+                            <FormattedMessage id="authpage.button.signin" />
                         </Button>
                         <Grid container justify="flex-end">
                             <Grid item>
-                                <NavLink to="/registration">Don't have account? Sign up</NavLink>
+                                <NavLink to="/registration"><FormattedMessage id="authpage.textfield.signup" /></NavLink>
                             </Grid>
                         </Grid>
                     </form>

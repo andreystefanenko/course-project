@@ -1,0 +1,15 @@
+{
+  "authpage.signin" : "Sign in",
+  "authpage.textfield.email" : "Email",
+  "authpage.textfield.password" : "Password",
+  "authpage.button.signin": "Sign in",
+  "authpage.textfield.signup" : "Don't have account? Sign up",
+  "navbar.select.language.en" : "English",
+  "navbar.select.language.ru" : "Russian",
+  "navbar.signin": "Sign in",
+  "mainpage.title": "Fanfics book",
+  "mainpage.subtitle": "Fan fiction is a jargon that denotes an amateur composition based on popular original literary, works, works of cinema art (movies, TV series, anime, etc.), comics (including manga), as well as computer games, and others. The authors of such works — fiction writers, as a rule, are fans of original works. Usually fan fiction, is created on a non-commercial basis (for reading by other fans).",
+  "mainpage.chip.last": "Latest fanfics",
+  "mainpage.button.view": "View"
+
+}

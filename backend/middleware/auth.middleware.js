@@ -19,6 +19,6 @@ module.exports = (req, res, next) => {
         next()
 
     } catch (e) {
-        res.status(StatusCodes.UNAUTHORIZED).json({message: 'No fck authorization'})
+        res.status(StatusCodes.UNAUTHORIZED).json({message: 'No authorization'})
     }
 }
